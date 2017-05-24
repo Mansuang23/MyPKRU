@@ -1,6 +1,7 @@
 package sitthipichaivong.mansuang.mypkru;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -21,6 +22,7 @@ public class NewRegisterActivity extends AppCompatActivity implements View.OnCli
     private ImageView backImageView, humanImageView, cameraImageView;
     private Button button;
     private Uri humanUri, cameraUri;
+    private String pathImageString, nameImageString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +49,12 @@ public class NewRegisterActivity extends AppCompatActivity implements View.OnCli
             humanUri = data.getData();
             try {
 
-                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(humanUri));
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver()
+                        .openInputStream(humanUri));
                 humanImageView.setImageBitmap(bitmap);
+
+                findPathAndName(humanUri);
+
             } catch (Exception e) {
                 Log.d("human", "e humanUri" + e.toString());
             }
@@ -59,10 +65,45 @@ public class NewRegisterActivity extends AppCompatActivity implements View.OnCli
         if ((requestCode == 1) && (resultCode == RESULT_OK)) {
             Log.d("24MayV1", "Camera Result OK");
 
+            // Show Image
+            cameraUri = data.getData();
+            try {
+
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver()
+                        .openInputStream(cameraUri));
+                humanImageView.setImageBitmap(bitmap);
+
+                findPathAndName(cameraUri);
+
+            } catch (Exception e) {
+                Log.d("24MayV1", "e camera ==> " + e.toString());
+
+            }
+
 
         }   // If Camera
 
     }   // OnActivity
+
+    private void findPathAndName(Uri uri) {
+
+        String[] strings = new String[]{MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, strings, null, null, null);
+        if (cursor != null) {
+
+            cursor.moveToFirst();
+            int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            pathImageString = cursor.getString(index);
+
+        } else {
+
+            pathImageString = uri.getPath();
+
+        }
+        Log.d("24MayV1", "Path ==> " + pathImageString);
+
+
+    }
 
     private void controller() {
         backImageView.setOnClickListener(this);
