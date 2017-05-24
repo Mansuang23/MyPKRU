@@ -2,6 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sitthipichaivong.mansuang.mypkru">
 
+    // ขออนุญาติใช้พื้นที่หน่วยความจำภายนอก
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    // ขออนุญาติใช้อินเตอร์เน็ต
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    // ขออนุญาติดึงพิกัด
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    // ทำการค้นหาพิกัดอย่างระเอียด error แค่ 300 เมตร
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".NewRegisterActivity"></activity>
     </application>
 
 </manifest>

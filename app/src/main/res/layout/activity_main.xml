@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sitthipichaivong.mansuang.mypkru.MainActivity">
+    tools:context=".MainActivity">
 
+    <ImageView
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <LinearLayout
+        android:padding="@dimen/padding"
+        android:background="#c8ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/martin"
@@ -21,7 +27,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/logo_pkru" />
 
-        <!--This is User-->
+        <!--This is user-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,6 +40,7 @@
                 android:src="@mipmap/ic_user" />
 
             <EditText
+                android:id="@+id/edtUser"
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorHint="@color/colorPrimary"
                 android:layout_width="match_parent"
@@ -56,6 +63,7 @@
                 android:src="@mipmap/ic_password" />
 
             <EditText
+                android:id="@+id/edtPassword"
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorHint="@color/colorPrimary"
                 android:layout_width="match_parent"
@@ -68,6 +76,8 @@
         <!--This is New Register-->
 
         <TextView
+            android:clickable="true"
+            android:id="@+id/txtNewRegister"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold"
             android:textSize="@dimen/h2"
@@ -78,6 +88,9 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnLogin"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
